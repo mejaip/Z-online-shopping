@@ -14,9 +14,28 @@ public class PageController {
 	@RequestMapping(value = { "/", "/home", "/index" })
 	public ModelAndView index() {
 		log.info("Going through index method");
-		System.out.println("Jai ram ji");
 		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("greeting", "Welcome to Spring Web MVC");
+		mv.addObject("title", "Home");
+		mv.addObject("userClickHome", true);
+		log.info("Returning the view.");
+		return mv;
+	}
+	
+	@RequestMapping(value = { "/about" })
+	public ModelAndView about() {
+		log.info("Going through index method");
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "About Us");
+		mv.addObject("userClickAbout", true);
+		log.info("Returning the view.");
+		return mv;
+	}
+	@RequestMapping(value = { "/contact" })
+	public ModelAndView contact() {
+		log.info("Going through index method");
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "Contact Us");
+		mv.addObject("userClickContact", true);
 		log.info("Returning the view.");
 		return mv;
 	}
