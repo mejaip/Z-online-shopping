@@ -14,6 +14,12 @@
 	</properties>
 
 	<dependencies>
+		<!-- Link Backend Project -->
+		<dependency>
+			<groupId>net.mejaip</groupId>
+			<artifactId>Z-ShoopingBackend</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
