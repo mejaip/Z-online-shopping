@@ -12,5 +12,9 @@ public interface CategoryDAO {
 	
 	boolean add(Category category);
 	
+	boolean delete(Category category);
+	
+	boolean update(Category category);
+	
 
 }
