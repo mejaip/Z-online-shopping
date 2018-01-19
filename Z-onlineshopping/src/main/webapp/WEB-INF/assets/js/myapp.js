@@ -72,7 +72,14 @@ $(function() {
 								}
 							},
 							{
-								data : 'quantity'
+								data : 'quantity',
+								mRender: function(data, type, row){
+									if(data<1)
+										{
+										return '<span style="color:red">Out of Stock!</span>';
+										}
+									return data;
+								}
 
 							},
 							{

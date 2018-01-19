@@ -1,12 +1,15 @@
 package net.mejaip.onlineshopping.controller;
 
-import org.apache.log4j.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import net.mejaip.onlineshopping.exception.ProductNotFoundException;
 import net.mejaip.shoppingbackend.dao.CategoryDAO;
 import net.mejaip.shoppingbackend.dao.ProductDAO;
 import net.mejaip.shoppingbackend.dto.Category;
@@ -15,7 +18,8 @@ import net.mejaip.shoppingbackend.dto.Product;
 @Controller
 public class PageController {
 
-	static Logger log = Logger.getLogger(PageController.class.getName());
+	private static  final Logger logger = LoggerFactory.getLogger(PageController.class);
+	
 
 	@Autowired
 	private CategoryDAO categoryDAO;
@@ -29,6 +33,10 @@ public class PageController {
 		ModelAndView mv = new ModelAndView("page");
 
 		mv.addObject("title", "Home");
+		
+		logger.info("Inside PageController Index Method - Info");
+		logger.debug("Inside PageController Index Method - Debug");
+		
 		mv.addObject("categories", categoryDAO.list());
 		mv.addObject("userClickHome", true);
 
@@ -41,29 +49,29 @@ public class PageController {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "About Us");
 		mv.addObject("userClickAbout", true);
-		log.info("Returning the view.");
+		
 		return mv;
 	}
 
 	@RequestMapping(value = "/contact")
 	public ModelAndView contact() {
-		log.info("Going through index method");
+		
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "Contact Us");
 		mv.addObject("userClickContact", true);
-		log.info("Returning the view.");
+		
 		return mv;
 	}
 
 	/* Method to load all the products based on category */
 	@RequestMapping(value = "/show/all/products")
 	public ModelAndView showAllProducts() {
-		log.info("Going through index method");
+		
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "All Product");
 		mv.addObject("categories", categoryDAO.list());
 		mv.addObject("userClickAllProducts", true);
-		log.info("Returning the view.");
+		
 		return mv;
 	}
 
@@ -78,17 +86,19 @@ public class PageController {
 		mv.addObject("categories", categoryDAO.list());
 		mv.addObject("category", categoryDAO.get(id));
 		mv.addObject("userClickCategoryProducts", true);
-		log.info("Returning the view.");
+		
 		return mv;
 	}
 
 	/* Viewing Single Product */
 
 	@RequestMapping(value = "/show/{id}/product")
-	public ModelAndView showSingleProduct(@PathVariable int id) {
+	public ModelAndView showSingleProduct(@PathVariable int id) throws ProductNotFoundException {
 		ModelAndView mv = new ModelAndView("page");
 		
 		Product product = productDAO.get(id);
+		if(product == null) throw new ProductNotFoundException();
+		
 		product.setViews(product.getViews()+1);
 		
 		//update view count
