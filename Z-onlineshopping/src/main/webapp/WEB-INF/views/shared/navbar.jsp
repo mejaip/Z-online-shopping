@@ -11,11 +11,22 @@
 				<li class="nav-item active"><a class="nav-link" href="#">Home
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item" id="about"><a class="nav-link" href="${contextRoot}/about">About</a></li>
-				<li class="nav-item" id="listProducts"><a class="nav-link" href="${contextRoot}/show/all/products">View Product</a>
-				</li>
-				<li class="nav-item" id="contact"><a class="nav-link" href="${contextRoot}/contact">Contact</a></li>
+				<li class="nav-item" id="about"><a class="nav-link"
+					href="${contextRoot}/about">About</a></li>
+				<li class="nav-item" id="listProducts"><a class="nav-link"
+					href="${contextRoot}/show/all/products">View Product</a></li>
+				<li class="nav-item" id="manageProducts"><a class="nav-link"
+					href="${contextRoot}/manage/products">Manage Product</a></li>
+				<li class="nav-item" id="contact"><a class="nav-link"
+					href="${contextRoot}/contact">Contact</a></li>
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li class="nav-item" id="register"><a class="nav-link"
+					href="${contextRoot}/register">Sign Up</a></li>
+				<li class="nav-item" id="login"><a class="nav-link"
+					href="${contextRoot}/login">Login</a></li>
 			</ul>
 		</div>
 	</div>
-	</nav>
+</nav>
