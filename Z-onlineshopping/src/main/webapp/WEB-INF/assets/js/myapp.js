@@ -19,6 +19,18 @@ $(function() {
 		$('#a_' + menu).addClass('active');
 		break;
 	}
+	// / To Tackle CSRF Token
+	var token = $('meta[name="_csrf"]').attr('content');
+	var header = $('meta[name="_csrf_header"]').attr('content');
+
+	if ((token != undefined && header != undefined)
+			&& (token.length > 0 && header.length > 0)) {
+		// set the token header for the ajax request
+		$(document).ajaxSend(function(e, xhr, options) {
+			xhr.setRequestHeader(header, token);
+		});
+	}
+
 	// code for jquery dataTable
 
 	var $table = $('#producstListTable');
@@ -91,14 +103,28 @@ $(function() {
 											+ '/show/'
 											+ data
 											+ '/product" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a> &#160';
-									if (row.quantity < 1) {
-										str += '<a href="javascript.void(0)" class="btn btn-success disabled"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
-									} else {
+
+									if (userRole == 'ADMIN') {
+
 										str += '<a href="'
 												+ window.contextRoot
-												+ '/cart/add/'
+												+ '/manage/'
 												+ data
-												+ '/product" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
+												+ '/product" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>';
+
+									} else {
+
+										if (row.quantity < 1) {
+											str += '<a href="javascript.void(0)" class="btn btn-success disabled"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
+										} else {
+
+											str += '<a href="'
+													+ window.contextRoot
+													+ '/cart/add/'
+													+ data
+													+ '/product" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
+
+										}
 									}
 
 									return str;
@@ -301,6 +327,38 @@ $(function() {
 		});
 
 	}
-	
+	// -----------------
+	// Login validation
+	$loginForm = $('#loginForm');
 
+	if ($loginForm.length) {
+
+		$loginForm.validate({
+			rules : {
+				username : {
+					required : true,
+					email : true
+				},
+				password : {
+					required : true
+				}
+			},
+			messages : {
+				username : {
+					required : 'Please enter The Username!',
+					email : 'Please enter valid Email address'
+				},
+				password : {
+					required : 'Please enter the Password!'
+				}
+			},
+			errorElement : 'em',
+			errorPlacement : function(error, element) {
+				error.addClass('help-block');
+				error.insertAfter(element);
+			}
+		});
+
+	}
+	// -------------------
 });

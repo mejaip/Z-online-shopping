@@ -16,11 +16,12 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-
+<meta name="_csrf" content="${_csrf.token}">
+<meta name="_csrf_header" content="${_csrf.headerName}">
 <title>Online Shopping - ${title}</title>
 <script>
 	window.menu = '${title}';
-	
+
 	window.contextRoot = '${contextRoot}';
 </script>
 
@@ -64,18 +65,20 @@
 			<c:if test="${userClickShowProduct == true}">
 				<%@include file="singleProduct.jsp"%>
 			</c:if>
-			
+
 			<c:if test="${userClickManageProduct == true}">
 				<%@include file="manageProducts.jsp"%>
 			</c:if>
-			
+			<c:if test="${userClickShowCart == true}">
+				<%@include file="cart.jsp"%>
+			</c:if>
 		</div>
 		<!-- Footer -->
 		<%@include file="./shared/footer.jsp"%>
 		<!-- Bootstrap core JavaScript -->
 		<script src="${js}/jquery.js"></script>
 		<script src="${js}/jquery.validate.js"></script>
-		
+
 		<script src="${js}/bootstrap.bundle.min.js"></script>
 		<script src="${js}/jquery.dataTables.js"></script>
 		<%--Bootbox	 --%>

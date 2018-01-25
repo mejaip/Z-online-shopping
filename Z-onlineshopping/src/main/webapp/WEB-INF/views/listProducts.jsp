@@ -41,32 +41,36 @@
 
 			<div class="row">
 				<div class="col-xs-12">
+					<div class="container-fluid">
+						<div class="table-responsive">
+							<table id="producstListTable"
+								class="table table-striped table-borderd">
+								<thead>
+									<tr>
+										<th>Item</th>
+										<th>Name</th>
+										<th>Brand</th>
+										<th>Price</th>
+										<th>Qty Available</th>
+										<th></th>
+									</tr>
+								</thead>
 
-					<table id="producstListTable"
-						class="table table-striped table-borderd">
-						<thead>
-							<tr>
-								<th>Item</th>
-								<th>Name</th>
-								<th>Brand</th>
-								<th>Price</th>
-								<th>Qty Available</th>
-								<th></th>
-							</tr>
-						</thead>
+								<tfoot>
+									<tr>
+										<th>Item</th>
+										<th>Name</th>
+										<th>Brand</th>
+										<th>Price</th>
+										<th>Qty Available</th>
+										<th></th>
+									</tr>
+								</tfoot>
 
-						<tfoot>
-							<tr>
-								<th>Item</th>
-								<th>Name</th>
-								<th>Brand</th>
-								<th>Price</th>
-								<th>Qty Available</th>
-								<th></th>
-							</tr>
-						</tfoot>
+							</table>
+						</div>
+					</div>
 
-					</table>
 
 				</div>
 

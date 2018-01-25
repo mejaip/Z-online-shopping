@@ -22,7 +22,7 @@ public class HibernateConfig {
 	private final static String DATABASE_DIALECT = "org.hibernate.dialect.MySQL5Dialect";
 	private final static String DATABASE_USERNAME = "root";
 	private final static String DATABASE_PASSWORD = "root";
-	@Bean
+	@Bean("dataSource")
 	public DataSource getDataSource() {
 		BasicDataSource dataSource=new BasicDataSource();
 		dataSource.setDriverClassName(DATABASE_DRIVER);
