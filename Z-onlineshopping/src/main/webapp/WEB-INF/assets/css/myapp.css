@@ -136,3 +136,12 @@ input:checked + .slider:before {
 		content: attr(data-th); font-weight: bold;
 		display: inline-block; width: 8rem;
 	}
+	
+.cartImg {
+	width: 100px;
+	height: 100px;
+}
+
+.unavailable{
+	color: red;
+}

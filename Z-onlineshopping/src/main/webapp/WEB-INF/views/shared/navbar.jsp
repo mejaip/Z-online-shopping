@@ -10,8 +10,8 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item active"><a class="nav-link" href="#">Home
-						<span class="sr-only">(current)</span>
+				<li class="nav-item" id ="home"><a class="nav-link" href="${contextRoot}/home">Home
+						<span class="sr-only"></span>
 				</a></li>
 				<li class="nav-item" id="about"><a class="nav-link"
 					href="${contextRoot}/about">About</a></li>
@@ -34,7 +34,7 @@
 						href="${contextRoot}/login">Login</a></li>
 				</security:authorize>
 				<security:authorize access="isAuthenticated()">
-					<li class="dropdown"><a href="javascript:void(0)"
+					<li class="dropdown" id = "userCart"><a href="javascript:void(0)"
 						class="btn btn-default dropdown-toggle" id="dropdownMenu1"
 						data-toggle="dropdown"> ${userModel.fullName} </a>
 						<ul class="dropdown-menu">

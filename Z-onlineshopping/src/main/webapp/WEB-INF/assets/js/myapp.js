@@ -1,7 +1,9 @@
 $(function() {
 	// solving the active menu problem
 	switch (menu) {
-
+	case 'Home':
+		$('#home').addClass('active');
+		break;
 	case 'About Us':
 		$('#about').addClass('active');
 		break;
@@ -14,12 +16,15 @@ $(function() {
 	case 'Manage Product':
 		$('#manageProducts').addClass('active');
 		break;
+	case 'User Cart':
+		$('#userCart').addClass('active');
+		break;
 	default:
 		$('#listProduct').addClass('active');
 		$('#a_' + menu).addClass('active');
 		break;
 	}
-	// / To Tackle CSRF Token
+	// To Tackle CSRF Token
 	var token = $('meta[name="_csrf"]').attr('content');
 	var header = $('meta[name="_csrf_header"]').attr('content');
 
@@ -361,4 +366,42 @@ $(function() {
 
 	}
 	// -------------------
+
+	// Click Event of refresh cart button
+
+	$('button[name = "refreshCart"]').click(function() {
+
+		// Fetch the cart line id
+		var cartLineId = $(this).attr('value');
+		var countElement = $('#count_' + cartLineId);
+
+		var originalCount = countElement.attr('value');
+		var currentCount = countElement.val();
+
+		// Work only when the count has changed
+
+		if (currentCount !== originalCount) {
+			if (currentCount < 1 || currentCount > 3) {
+				countElement.val(originalCount);
+				bootbox.alert({
+					size: 'medium',
+					title: 'Error',
+					message: 'Product count should be 1 minimum and 3 Maximum'
+				});
+			}
+			
+			else{
+				var updateUrl = window.contextRoot + '/cart/' + cartLineId + '/update?count='+ currentCount;
+				
+				// forward to controller
+				
+				window.location.href = updateUrl;
+				
+			}
+			
+		}
+
+	});
+
+	//
 });
