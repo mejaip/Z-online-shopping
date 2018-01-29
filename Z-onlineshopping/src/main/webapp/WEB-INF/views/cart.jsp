@@ -8,7 +8,7 @@
 			</h3>
 		</div>
 	</c:if>
-
+<!--   This needs to be change for Out of stack situation -->
 	<c:choose>
 		<c:when test="${not empty cartLines}">
 			<table id="cart" class="table table-hover table-condensed">
